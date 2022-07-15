@@ -54,12 +54,22 @@ export function useStart<T extends Event<any>>(startEvent: T) {
  */
 export function getStart<T>(component: T): undefined | Event<StartEvent> {
   if (component) return component[START];
+
 }
 
 /**
  * Assign start event to component
  */
-export function withStart<T, P>(event: Event<StartEvent<T>>, component: React.FC<P>): React.FC<P> {
-  component[START] = event;
-  return component;
+export function withStart<T, P>(event: Event<StartEvent<T>>, Component:React.FC<P> ): React.FC<P> {
+  const Wrapper = (props:P) => {
+    useStart(event)
+
+    return (
+      <Component {...props}/>
+    )
+  }
+
+  Wrapper[START] = event;
+
+  return Wrapper;
 }

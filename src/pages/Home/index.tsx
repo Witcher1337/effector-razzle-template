@@ -1,9 +1,10 @@
-import {$sampleStore, getSample} from '@features/sample/model';
+import {$sampleStore} from '@features/sample/model';
 import {useStore} from 'effector-react/scope';
 import {Link} from 'react-router-dom';
 import {withStart} from 'shared/libs/page-routing';
+import {pageStarted} from './model';
 
-export const Home = withStart(getSample, () => {
+export const Home = withStart(pageStarted, () => {
   const sampleStore = useStore($sampleStore);
 
   return (
