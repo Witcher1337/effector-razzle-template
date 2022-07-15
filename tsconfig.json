@@ -1,0 +1,87 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "baseUrl": "src",
+    "paths": {
+      "@ui": [
+        "shared/ui"
+      ],
+      "@lib/*": [
+        "shared/lib/*"
+      ],
+      "@features/*": [
+        "features/*"
+      ],
+      "@entities/*": [
+        "entities/*"
+      ],
+      "@pages": [
+        "pages"
+      ],
+      "@history": [
+        "custom-history"
+      ],
+      "@api/*": [
+        "shared/api/codegen/*"
+      ],
+      "@ssr": [
+        "shared/lib/effector-ssr"
+      ],
+      "@env": [
+        "env"
+      ],
+      "@credentials": [
+        "entities/account/model/model"
+      ],
+      "@foo/*": [
+        "foo/*"
+      ],
+      "@mock": [
+        "mock"
+      ]
+    },
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "es6",
+      "es2015",
+      "es2017",
+      "dom",
+      "ES2019",
+      "DOM.Iterable"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": false,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "pretty": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es2016",
+    "types": [
+      "react",
+      "jest",
+      "node",
+      "webpack-env",
+    ],
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "razzle.config.js",
+    "node_modules"
+  ]
+}
