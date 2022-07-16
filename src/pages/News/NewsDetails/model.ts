@@ -1,4 +1,4 @@
-import {fetchDetailsFx} from '@features/news/model';
+import {$details, fetchDetailsFx} from '@features/news/model';
 import {createEvent, sample} from 'effector';
 import {StartEvent} from 'shared/libs/page-routing';
 
@@ -7,10 +7,19 @@ export type PageParams = {
 }
 
 export const mounted = createEvent<StartEvent<PageParams>>();
+export const unmounted = createEvent();
 
-mounted.watch(() => console.log("Fetch"))
+mounted.watch(() => console.log("mounted"))
+unmounted.watch(() => console.log("unmounted"))
+
+fetchDetailsFx.watch(() => {
+  console.log("fetchDetailsFx")
+});
+
 sample({
+  source: $details,
   clock: mounted,
-  fn: (payload) => Number(payload.params.id),
+  filter: (details, {params}) => details?.id !== Number(params.id),
+  fn: (_, {params}) => Number(params.id),
   target: fetchDetailsFx,
 });

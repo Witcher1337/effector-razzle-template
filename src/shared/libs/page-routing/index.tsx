@@ -35,33 +35,35 @@ export function createStart(...params: string[]): Event<StartEvent> {
  * Loads start event on browser side and pass params and query
  */
 
-type UseStartOptions = {
-  withSSR: boolean,
-  deps?: Array<unknown>
+type UseLifeCycleParams<T> = {
+  mount?: T,
+  unmount?: Event<void>
 }
 
-export function useStart<T extends Event<any>>(startEvent: T, options?: UseStartOptions) {
-  const [isFirstRender, setIsFirstRender] = useState(true);
+const defaultMountEvent = createEvent<unknown>();
+const defaultUnmountEvent = createEvent<void>();
+export function useLifeCycle<T extends Event<any>>({mount, unmount}:UseLifeCycleParams<T>, deps: Array<unknown>){
   const params = useParams();
   const location = useLocation();
   const query = useMemo(() => Object.fromEntries(new URLSearchParams(location.search)), [location.search]);
-  const start = useEvent(startEvent);
+
+  const handlers = useEvent({
+    mount: mount || defaultMountEvent,
+    unmount: unmount || defaultUnmountEvent,
+  });
 
   useEffect(() => {
-    setIsFirstRender(false);
-
-  }, options?.deps || [])
-
-  useEffect(() => {
-    if(isFirstRender && options?.withSSR)  return
-
-    start({
+    handlers.mount({
       path: location.pathname,
       params,
       query,
     });
-  }, options?.deps || []);
-}
+
+    return () => {
+      handlers.unmount()
+    }
+  }, deps)
+};
 
 /**
  * Ejects start event from component
@@ -75,15 +77,7 @@ export function getStart<T>(component: T): undefined | Event<StartEvent> {
  * Assign start event to component
  */
 export function withStart<T, P>(event: Event<StartEvent<T>>, Component:React.FC<P> ): React.FC<P> {
-  const Wrapper = (props:P) => {
-    useStart(event, {withSSR: true})
+  Component[START] = event;
 
-    return (
-      <Component {...props}/>
-    )
-  }
-
-  Wrapper[START] = event;
-
-  return Wrapper;
+  return Component;
 }
