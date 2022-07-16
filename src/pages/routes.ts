@@ -1,5 +1,6 @@
 import {Home} from "./Home";
-import {Page2} from './Page2';
+import {News} from './News';
+import {NewsDetails} from './News/NewsDetails';
 
 export const routes = [
   {
@@ -7,8 +8,13 @@ export const routes = [
     element: Home,
   },
   {
-    path: "/page2",
-    element: Page2,
+    path: "/news",
+    element: News,
+  },
+  {
+    path: "/news/:id",
+    exact: true,
+    element: NewsDetails,
   },
 ];
 

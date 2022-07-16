@@ -14,7 +14,7 @@ export const Home = withStart(pageStarted, () => {
       </h1>
 
       $sampleStore: {sampleStore}
-      <Link to="/page2">Page 2</Link>
+      <Link to="/news">News</Link>
     </div>
   );
 });

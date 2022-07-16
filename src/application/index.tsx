@@ -4,9 +4,9 @@ import {routes} from 'pages/routes';
 export const Application = () => {
   return (
     <Routes>
-      {routes.map(({path, element:Element}, index) => (
+      {routes.map(({path, element:Element}) => (
         <Route
-          key={index}
+          key={path}
           path={path}
           element={<Element />}
         />
