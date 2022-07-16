@@ -1,5 +1,5 @@
-import {Link} from 'react-router-dom';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 export const News = () => (
   <div>
@@ -16,4 +16,4 @@ export const News = () => (
       <Link to="/news/1">Details</Link>
     </article>
   </div>
-)
+);

@@ -18,4 +18,4 @@ export const mustacheTemplate = `
     </script>
   </body>
 </html>
-`
+`;

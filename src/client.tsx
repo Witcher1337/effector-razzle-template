@@ -1,8 +1,9 @@
-import ReactDOM from 'react-dom';
-import {fork} from 'effector';
-import {Application} from './application';
-import {BrowserRouter} from 'react-router-dom';
-import {Provider} from 'effector-react/scope';
+import { fork } from "effector";
+import { Provider } from "effector-react/scope";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+
+import { Application } from "./application";
 
 if (module.hot) {
   module.hot.accept();
@@ -18,6 +19,5 @@ ReactDOM.hydrate(
       <Application />
     </Provider>
   </BrowserRouter>,
-  document.querySelector('#root'),
+  document.querySelector("#root"),
 );
-

@@ -1,8 +1,7 @@
-import {useEvent} from 'effector-react/scope';
-import {createEvent, Event} from 'effector';
-
-import {useState , useEffect, useMemo} from 'react';
-import {useLocation, useParams, Params} from 'react-router';
+import { createEvent, Event } from "effector";
+import { useEvent } from "effector-react/scope";
+import { useEffect, useMemo } from "react";
+import { useLocation, useParams, Params } from "react-router";
 
 const START = `☄️/start-event`;
 
@@ -21,7 +20,7 @@ export type RoutePath = {
 };
 
 export type StartEvent<P = void, Q = void> = RoutePath &
-  (P extends void ? RouteParams<Params<string>> : { params: P}) &
+  (P extends void ? RouteParams<Params<string>> : { params: P }) &
   (Q extends void ? RouteQuery<KeyValueMap> : Q);
 
 /**
@@ -36,16 +35,22 @@ export function createStart(...params: string[]): Event<StartEvent> {
  */
 
 type UseLifeCycleParams<T> = {
-  mount?: T,
-  unmount?: Event<void>
-}
+  mount?: T;
+  unmount?: Event<void>;
+};
 
 const defaultMountEvent = createEvent<unknown>();
 const defaultUnmountEvent = createEvent<void>();
-export function useLifeCycle<T extends Event<any>>({mount, unmount}:UseLifeCycleParams<T>, deps: Array<unknown>){
+export function useLifeCycle<T extends Event<any>>(
+  { mount, unmount }: UseLifeCycleParams<T>,
+  deps: Array<unknown>,
+) {
   const params = useParams();
   const location = useLocation();
-  const query = useMemo(() => Object.fromEntries(new URLSearchParams(location.search)), [location.search]);
+  const query = useMemo(
+    () => Object.fromEntries(new URLSearchParams(location.search)),
+    [location.search],
+  );
 
   const handlers = useEvent({
     mount: mount || defaultMountEvent,
@@ -60,23 +65,22 @@ export function useLifeCycle<T extends Event<any>>({mount, unmount}:UseLifeCycle
     });
 
     return () => {
-      handlers.unmount()
-    }
-  }, deps)
-};
+      handlers.unmount();
+    };
+  }, deps);
+}
 
 /**
  * Ejects start event from component
  */
 export function getStart<T>(component: T): undefined | Event<StartEvent> {
   if (component) return component[START];
-
 }
 
 /**
  * Assign start event to component
  */
-export function withStart<T, P>(event: Event<StartEvent<T>>, Component:React.FC<P> ): React.FC<P> {
+export function withStart<T, P>(event: Event<StartEvent<T>>, Component: React.FC<P>): React.FC<P> {
   Component[START] = event;
 
   return Component;

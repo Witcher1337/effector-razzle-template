@@ -1,6 +1,6 @@
-import {Home} from "./Home";
-import {News} from './News';
-import {NewsDetails} from './News/NewsDetails';
+import { Home } from "./Home";
+import { News } from "./News";
+import { NewsDetails } from "./News/NewsDetails";
 
 export const routes = [
   {
@@ -17,5 +17,3 @@ export const routes = [
     element: NewsDetails,
   },
 ];
-
-

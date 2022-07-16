@@ -1,56 +1,74 @@
 module.exports = {
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "react"],
-  "settings": {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
     },
+    ecmaVersion: 12,
+    sourceType: "module",
+  },
+  extends: ["plugin:prettier/recommended"],
+  plugins: ["prettier", "import", "unused-imports"],
+  settings: {
     "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true,
-      },
+      typescript: {},
     },
   },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true,
-    },
-  },
-  "rules": {
-    "indent": ["error", 2],
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-    "consistent-return": "off",
-    "newline-per-chained-call": ["error"],
-    "object-curly-spacing": ["error", "never"],
-    "react/jsx-max-props-per-line": [1, { "maximum": 1 }],
-    "react/jsx-closing-bracket-location": ["error", "tag-aligned"],
-    "react/jsx-wrap-multilines": [
-      "error",
+  rules: {
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
       {
-        "declaration": "parens-new-line",
-        "assignment": "parens-new-line",
-        "return": "parens-new-line",
-        "arrow": "parens-new-line",
-        "condition": "parens-new-line",
-        "logical": "parens-new-line",
-        "prop": "parens-new-line",
+        vars: "all",
+        varsIgnorePattern: "^_",
+        args: "after-used",
+        argsIgnorePattern: "^_",
       },
     ],
-    "react/jsx-first-prop-new-line": ["error"],
-    //    "object-curly-newline": ["error", {
-    //      "ObjectExpression": "always",
-    //      "ObjectPattern": {
-    //        "multiline": true
-    //      },
-    //      "ImportDeclaration": {
-    //        "multiline": true
-    //      },
-    //      "ExportDeclaration": { "multiline": true, "minProperties": 3 }
-    //    }],
-    "object-property-newline": ["error"],
-
-    "comma-dangle": ["error", "always-multiline"],
+    "import/order": [
+      "error",
+      {
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+        "newlines-between": "always",
+        pathGroups: [
+          {
+            group: "internal",
+            position: "after",
+            pattern: "~/processes/**",
+          },
+          {
+            group: "internal",
+            position: "after",
+            pattern: "~/pages/**",
+          },
+          {
+            group: "internal",
+            position: "after",
+            pattern: "~/widgets/**",
+          },
+          {
+            group: "internal",
+            position: "after",
+            pattern: "~/features/**",
+          },
+          {
+            group: "internal",
+            position: "after",
+            pattern: "~/entities/**",
+          },
+          {
+            group: "internal",
+            position: "after",
+            pattern: "~/shared/**",
+          },
+        ],
+        pathGroupsExcludedImportTypes: ["builtin"],
+        groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
+      },
+    ],
+    "import/no-unresolved": "error",
   },
-}
+};
