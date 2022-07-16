@@ -5,13 +5,13 @@ import express from "express";
 import mustache from "mustache";
 import ReactDOM from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
+import { CacheConfig } from 'shared/configs/cache';
 
 import { serverStarted } from "shared/libs/effector-ssr-routing/effector";
-import { ApplicationAssets } from "shared/libs/effector-ssr-routing/types";
+import { ApplicationAssets } from 'shared/libs/effector-ssr-routing/types';
 
 import { Application } from "./application";
 import { mustacheTemplate } from "./application/template.mustache";
-import { CacheConfig } from "./shared/configs/cache";
 
 export const server = express();
 

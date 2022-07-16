@@ -11,6 +11,9 @@
       "@lib/*": [
         "shared/lib/*"
       ],
+      "configs/*": [
+        "shared/configs/*"
+      ],
       "@features/*": [
         "features/*"
       ],

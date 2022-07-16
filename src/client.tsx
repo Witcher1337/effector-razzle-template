@@ -5,9 +5,9 @@ import { BrowserRouter } from "react-router-dom";
 
 import { Application } from "./application";
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}
 
 const scope = fork({
   values: window.INITIAL_STATE,
