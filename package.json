@@ -5,10 +5,10 @@
   "scripts": {
     "prepare": "node prepare.js",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-    "start": "razzle start",
+    "dev": "razzle start",
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
-    "start:prod": "NODE_ENV=production node build/server.js"
+    "start": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
     "babel-preset-razzle": "^4.2.17",
