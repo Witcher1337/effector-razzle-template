@@ -23,27 +23,12 @@
       "@pages": [
         "pages"
       ],
-      "@history": [
-        "custom-history"
-      ],
       "@api/*": [
-        "shared/api/codegen/*"
+        "shared/api/*"
       ],
       "@ssr": [
         "shared/lib/effector-ssr"
       ],
-      "@env": [
-        "env"
-      ],
-      "@credentials": [
-        "entities/account/model/model"
-      ],
-      "@foo/*": [
-        "foo/*"
-      ],
-      "@mock": [
-        "mock"
-      ]
     },
     "downlevelIteration": true,
     "esModuleInterop": true,
