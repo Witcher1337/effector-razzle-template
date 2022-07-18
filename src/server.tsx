@@ -4,6 +4,7 @@ import { Provider } from "effector-react/scope";
 import express from "express";
 import mustache from "mustache";
 import ReactDOM from "react-dom/server";
+import { Helmet } from "react-helmet";
 import { StaticRouter } from "react-router-dom/server";
 
 import { CacheConfig } from "shared/configs/cache";
@@ -26,6 +27,8 @@ server
     const scope = fork({
       values,
     });
+
+    const helmet = Helmet.renderStatic();
 
     try {
       await allSettled(serverStarted, {
@@ -50,7 +53,7 @@ server
     const html = mustache.render(mustacheTemplate, {
       markup: ReactDOM.renderToString(application),
       initialState: JSON.stringify(serialize(scope)),
-      title: "Title",
+      title: helmet.title,
       assets: assets.client,
     });
 
