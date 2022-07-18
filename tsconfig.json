@@ -56,7 +56,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es2016",
     "types": [
-      "react/next",
+      "react",
       "jest",
       "node",
       "webpack-env",
