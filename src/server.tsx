@@ -23,11 +23,7 @@ server
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
   .use(cookies())
   .get("/*", async (request, response) => {
-    const values = new Map();
-    const scope = fork({
-      values,
-    });
-
+    const scope = fork();
     const helmet = Helmet.renderStatic();
 
     try {

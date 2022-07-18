@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 export const News = () => (
   <div>
     <Helmet>
-      <title>News</title>
+      <title>News Page</title>
     </Helmet>
 
     <h1>News</h1>
+
     <Link to="/">Home</Link>
 
     <article>
