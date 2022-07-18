@@ -13,7 +13,6 @@ export const routes = [
   },
   {
     path: "/news/:id",
-    exact: true,
     element: NewsDetails,
   },
 ];
